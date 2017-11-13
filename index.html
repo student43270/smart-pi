@@ -1,0 +1,40 @@
+<script type="text/javascript">
+function loadXMLDoc(url="s") {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+           if (xmlhttp.status == 200) {
+               document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+           }
+           else if (xmlhttp.status == 400) {
+              alert('There was an error 400');
+           }
+           else {
+               alert('something else other than 200 was returned');
+           }
+        }
+    };
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
+
+</script>
+<div style="height:100%; width:100%">
+<button touchstart="loadXMLDoc('on')" touchend="loadXMLDoc('off')" type="button"
+style="float:left; height:40%; width:40%">ON</button>
+
+
+<div id="myDiv"></div>
+<!-- <button onmouseover="loadXMLDoc('off')" type="button"
+style="float:left; height:100%; width:40%">OFF</button>
+</div> -->
+
+<canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
+  Your browser does not support canvas element.
+</canvas>
+<br>
+<button onclick="startup()">Initialize</button>
+<br>
