@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
+    "raspicam": "^0.2.14",
     "rpio": "^0.9.19"
   }
 }

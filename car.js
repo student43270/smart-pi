@@ -1,18 +1,30 @@
 var rpio = require('rpio');
 const express = require('express')
 var path    = require("path");
+var RaspiCam = require("raspicam");
+const { exec } = require('child_process');
 
 const app = express()
 
 
-const hostname = '192.168.0.102';
+const hostname = '192.168.0.101';
 const port = 80;
 var gpio7 = 1;
 
+
+
 app.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/index.html'));
-  //__dirname : It will resolve to your project folder.
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
+app.get('/camera', (req, res) => {
+  exec('raspistill -o cam.jpg -q 10 -w 640 -h 480 -tl', (err, stdout, stderr) => {
+    if (err) {
+      res.send(err)
+    }
+  
+    res.sendFile(path.join(__dirname + '/cam.jpg'));
+  });
+})
 
 app.get('/on', (req, res) => {
   gpio7=1
@@ -39,7 +51,6 @@ function switchRele(port = 7, status = 1){
   rpio.open(port, rpio.OUTPUT, rpio.LOW);
   rpio.write(port, status);
 }
-//
 // for (var i = 0; i < 50; i++) {
 //         console.log(gpio7);
 //

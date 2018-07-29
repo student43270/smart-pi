@@ -23,8 +23,9 @@ function loadXMLDoc(url="s") {
 
 </script>
 <div style="height:100%; width:100%">
-<button touchstart="loadXMLDoc('on')" touchend="loadXMLDoc('off')" type="button"
-style="float:left; height:40%; width:40%">ON</button>
+<button onmousedown="loadXMLDoc('on')" touchstart="loadXMLDoc('on')" 
+onmouseup="loadXMLDoc('off')" touchend="loadXMLDoc('off')" type="button"
+style="float:left; height:10em; width:10em">ON</button>
 
 
 <div id="myDiv"></div>
